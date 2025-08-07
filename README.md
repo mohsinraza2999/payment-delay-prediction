@@ -1,68 +1,69 @@
-# 📊 Payment Delay Prediction API
+ <h1>📊 Payment Delay Prediction API</h1>
 
-This project predicts whether a credit card client will **default on payment next month**, using a machine learning model trained on the **"Default of Credit Card Clients"** dataset. The model is served as an API using **FastAPI** and deployed with **Uvicorn**, while **MongoDB Cloud** is used for storing client data and prediction results.
+  <p>
+    This project predicts whether a credit card client will <strong>default on payment next month</strong>, 
+    using a machine learning model trained on the <strong>"Default of Credit Card Clients"</strong> dataset. 
+    The model is served as an API using <strong>FastAPI</strong> and deployed with <strong>Uvicorn</strong>, 
+    while <strong>MongoDB Cloud</strong> is used for storing client data and prediction results.
+  </p>
 
----
+  <hr>
 
-## 🚀 Tech Stack
+  <h2>🚀 Tech Stack</h2>
+  <ul>
+    <li><strong>Dataset:</strong> Default of Credit Card Clients</li>
+    <li><strong>ML Model:</strong> Random Forest Classifier (for binary classification)</li>
+    <li><strong>API Framework:</strong> FastAPI</li>
+    <li><strong>Server:</strong> Uvicorn (ASGI server)</li>
+    <li><strong>Database:</strong> MongoDB Cloud (for prediction and request storage)</li>
+  </ul>
 
-- **Dataset**: Default of Credit Card Clients
-- **ML Model**: Random Forest Classifier (for binary classification)
-- **API Framework**: FastAPI
-- **Server**: Uvicorn (ASGI server)
-- **Database**: MongoDB Cloud (for prediction and request storage)
+  <hr>
 
----
-
-## 📂 Project Structure
-
+  <h2>📂 Project Structure</h2>
+  <pre>
 payment-delay-prediction/
-│
 ├── app/
-│ ├── main.py # FastAPI entry point
-│ ├── model.py # Model training & loading logic
-│ ├── schemas.py # Pydantic schemas for request/response
-│ ├── db.py # MongoDB connection & storage logic
-│ └── utils.py # Helper functions
-│
+│   ├── main.py              # FastAPI entry point
+│   ├── model.py             # Model training & loading logic
+│   ├── schemas.py           # Pydantic schemas for request/response
+│   ├── db.py                # MongoDB connection & storage logic
+│   └── utils.py             # Helper functions
 ├── data/
-│ └── default_credit.csv # Dataset file (optional)
-│
+│   └── default_credit.csv   # Dataset file (optional)
 ├── model/
-│ └── rf_model.pkl # Trained Random Forest model
-│
-├── requirements.txt # Python dependencies
-└── README.md # Project description
+│   └── rf_model.pkl         # Trained Random Forest model
+├── requirements.txt         # Python dependencies
+└── README.md                # Project description
+  </pre>
 
+  <hr>
 
+  <h2>🔍 Features</h2>
+  <ul>
+    <li>Train and save a <strong>Random Forest</strong> model for payment default prediction</li>
+    <li>Predict default status via <strong>REST API</strong></li>
+    <li><strong>Log predictions</strong> and input data to <strong>MongoDB Cloud</strong></li>
+    <li>Simple and fast deployment with <strong>Uvicorn</strong></li>
+  </ul>
 
----
+  <hr>
 
-## 🔍 Features
+  <h2>📈 Model Details</h2>
+  <ul>
+    <li><strong>Target:</strong> default.payment.next.month (1 = default, 0 = not)</li>
+    <li><strong>Features:</strong> 23 financial and demographic variables</li>
+    <li><strong>Preprocessing:</strong> Handled internally before model training</li>
+  </ul>
 
-- Train and save a **Random Forest** model for payment default prediction
-- Predict default status via **REST API**
-- **Log predictions** and input data to **MongoDB Cloud**
-- Simple and fast deployment with **Uvicorn**
+  <hr>
 
----
+  <h2>📡 API Endpoints</h2>
+  <h3><code>POST /predict</code></h3>
+  <p>Predict default status of a credit card client.</p>
 
-## 📈 Model Details
-
-- **Target**: `default.payment.next.month` (1 = default, 0 = not)
-- **Features**: 23 financial and demographic variables
-- **Preprocessing**: Handled internally before model training
-
----
-
-## 📡 API Endpoints
-
-### `POST /predict`
-
-Predict default status of a credit card client.
-
-**Sample Request:**
-json
+  <p><strong>Sample Request:</strong></p>
+  <pre>
 {
   "LIMIT_BAL": 20000,
   "SEX": 2,
@@ -88,66 +89,71 @@ json
   "PAY_AMT5": 0,
   "PAY_AMT6": 0
 }
+  </pre>
 
-## Sample Response:
-
-json
-
+  <p><strong>Sample Response:</strong></p>
+  <pre>
 {
-  "name": 0,
-  "LIMIT_BAL": 20000,
-  "SEX": male,
-  "AGE": 24,
+  "default_prediction": 0,
+  "probability": 0.13
 }
+  </pre>
 
+  <hr>
 
-## 🛠 Setup Instructions
-1. Clone the Repository
-bash
+  <h2>🛠 Setup Instructions</h2>
+
+  <h3>1. Clone the Repository</h3>
+  <pre>
 git clone https://github.com/yourusername/payment-delay-prediction.git
 cd payment-delay-prediction
+  </pre>
 
-
-2. Install Dependencies
-bash
+  <h3>2. Install Dependencies</h3>
+  <pre>
 pip install -r requirements.txt
-3. Train the Model (if not already trained)
-bash
+  </pre>
+
+  <h3>3. Train the Model (if not already trained)</h3>
+  <pre>
 python app/model.py
-4. Start the API Server
-bash
+  </pre>
+
+  <h3>4. Start the API Server</h3>
+  <pre>
 uvicorn app.main:app --reload
+  </pre>
 
+  <hr>
 
-## ☁️ MongoDB Cloud Setup
-Create a MongoDB Atlas account.
+  <h2>☁️ MongoDB Cloud Setup</h2>
+  <ol>
+    <li>Create a MongoDB Atlas account.</li>
+    <li>Set up a new cluster and create a database + collection.</li>
+    <li>Obtain your connection string (Mongo URI).</li>
+    <li>Add it to your environment or use a <code>.env</code> file:</li>
+  </ol>
+  <pre>
+MONGO_URI=mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.mongodb.net/dbname
+  </pre>
 
-Set up a new cluster and create a database + collection.
+  <hr>
 
-Obtain your connection string (Mongo URI).
+  <h2>✅ Future Improvements</h2>
+  <ul>
+    <li>Add model versioning</li>
+    <li>Implement user authentication</li>
+    <li>Add logging and monitoring</li>
+    <li>Develop a front-end dashboard</li>
+  </ul>
 
-Add it to your environment or use a .env file:
+  <hr>
 
-.env
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/dbname
+  <h2>📄 License</h2>
+  <p>This project is licensed under the MIT License.</p>
 
-## ✅ Future Improvements
-Add model versioning
+  <hr>
 
-Implement user authentication
-
-Add logging and monitoring
-
-Develop a front-end dashboard
-
-## 📄 License
-This project is licensed under the MIT License.
-
-## 👨‍💻 Author
-Mohsin Raza
-Open to contributions, feedback, and improvements!
-
-yaml
----
-
-Let me know if you'd like a `requirements.txt` sample or boilerplate FastAPI code to go with this!
+  <h2>👨‍💻 Author</h2>
+  <p><strong>Senior ML Developer</strong><br>
+  Open to contributions, feedback, and improvements!</p>
