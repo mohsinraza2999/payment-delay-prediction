@@ -23,16 +23,16 @@
   <h2>📂 Project Structure</h2>
   <pre>
 payment-delay-prediction/
-├── app/
-│   ├── main.py              # FastAPI entry point
-│   ├── model.py             # Model training & loading logic
-│   ├── schemas.py           # Pydantic schemas for request/response
-│   ├── db.py                # MongoDB connection & storage logic
-│   └── utils.py             # Helper functions
-├── data/
-│   └── default_credit.csv   # Dataset file (optional)
-├── model/
-│   └── rf_model.pkl         # Trained Random Forest model
+├── db/
+│   ├── config.py            # database configration
+│   ├── database.py          # MongoDB connection & storage logic
+│ 
+├── dataset/
+│   └── default.csv          # Dataset file (optional)
+|
+├── main.py                  # FastAPI entry point
+├── model.py                 # Model training & loading logic
+├── schemas.py               # Pydantic schemas for request/response
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project description
   </pre>
@@ -94,8 +94,12 @@ payment-delay-prediction/
   <p><strong>Sample Response:</strong></p>
   <pre>
 {
-  "default_prediction": 0,
-  "probability": 0.13
+   name: "jamie"
+   balance: 20000
+   gender : male
+   age : 34
+  "default": "no",
+  "summary": "On the predicted data the user may be not a defaulter"
 }
   </pre>
 
@@ -105,7 +109,7 @@ payment-delay-prediction/
 
   <h3>1. Clone the Repository</h3>
   <pre>
-git clone https://github.com/yourusername/payment-delay-prediction.git
+git clone https://github.com/mohsinraza2999/payment-delay-prediction.git
 cd payment-delay-prediction
   </pre>
 
@@ -155,5 +159,5 @@ MONGO_URI=mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.mongodb.net/d
   <hr>
 
   <h2>👨‍💻 Author</h2>
-  <p><strong>Senior ML Developer</strong><br>
+  <p><strong>Mohsin Raza</strong><br>
   Open to contributions, feedback, and improvements!</p>
