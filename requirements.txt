@@ -1,0 +1,6 @@
+pandas
+pydantic
+fastapi
+numpy
+python-dotenv
+scikit-learn
